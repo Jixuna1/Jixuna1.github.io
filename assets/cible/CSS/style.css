@@ -1,0 +1,287 @@
+body{
+    background-image: url(../images/fond.jpeg);
+    background-size: cover;
+    background-attachment: fixed;
+    width: auto;
+    height: auto;
+}
+
+.texte {
+    font-family: "Varsity";
+    color: red; 
+    text-align: center;
+    font-style: italic;
+    font-size: large;
+    position: absolute;
+    margin-top: 100px;
+    z-index: 20;
+    font-size:xx-large;
+    left: 50%;
+    margin-left: -95px;
+}
+
+.info {
+    color: white; 
+    border-radius: 30px;
+    font-weight: bold;
+    margin-top: 163px;
+    margin-left: 500px;
+    position: absolute;
+    z-index: 20; 
+    left: 50%;
+    margin-left: -240px; 
+}
+
+.obligatoire {
+    width: 140px;
+    height: 35px;
+    background-color: black;
+    text-align: center;
+    color: white; 
+    font-weight: bold;
+    margin-top: 290px;
+    margin-left: 500px;
+    position: absolute;
+    z-index: 20;  
+    box-shadow: 2px 2px 2px rgb(255, 255, 255);
+    left: 50%;
+    margin-left: -240px;
+}
+
+#pseudo {
+    height: 20px;
+    width: 150px;
+    background-color:rgb(17, 233, 244); 
+    color:black; 
+    border-radius: 30px;
+    box-shadow: 4px 4px 4px grey;
+    font-weight: bold;
+    margin-top: 173px;
+    margin-left: 750px;
+    position: absolute;
+    z-index: 20;
+    left: 50%;
+    margin-left: 60px;
+}
+
+#MDP {
+    height: 20px;
+    width: 150px;
+    background-color:rgb(17, 233, 244); 
+    color:black; 
+    border-radius: 30px;
+    box-shadow: 4px 4px 4px grey;
+    font-weight: bold;
+    margin-top: 240px;
+    margin-left: 750px;
+    position: absolute;
+    z-index: 20;
+    left: 50%;
+    margin-left: 60px;
+}
+
+.Texte {
+    font-family: "Varsity";
+    color: red; 
+    text-align: center;
+    font-style: italic;
+    font-size: large;
+    position: absolute;
+    margin-top: 50px;
+    left: 50%;
+    margin-left: -250px;
+    z-index: 20;
+    font-size:xx-large;
+    left: 50%;
+    margin-left: -170px;
+}
+
+@font-face {
+    font-family: "Varsity";
+    src:url(varsity_regular.ttf)
+}
+
+#accueil {
+    width: 750px ;
+    height: 400px;
+    margin-top: 50px;
+    border-radius: 10%;
+    position: absolute;
+    z-index: 1;
+    opacity: 70%;
+    border: outset rgb(239, 126, 33); 
+    left: 50%;
+    margin-left: -370px;
+}
+
+.circle1 {
+    width: 500px ;
+    height: 500px;
+    background-color: rgb(255, 16, 16);
+    border-radius: 50%;     
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%; 
+    border: 2px solid ;
+    text-align: center;
+    font-size: larger;
+}
+
+.circle2 {
+    width: 450px ;
+    height: 450px;
+    background-color: rgb(190, 7, 95);
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%; 
+    border: 2px solid ;
+    text-align: center;
+}
+
+.circle3 {
+    width: 400px ;
+    height: 400px;
+    background-color: rgb(9, 61, 45);
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+    border: 2px solid ;
+    text-align: center;
+}
+
+.circle4 {
+    width: 350px;
+    height: 350px;
+    background-color: rgb(7, 190, 31);
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+    border: 2px solid ;
+    text-align: center;
+}
+
+.circle5 {
+    width: 300px; 
+    height: 300px;
+    background-color: rgb(190, 7, 150);
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+    border: 2px solid ;
+    text-align: center;
+}
+
+.circle6 {
+    width: 250px ;
+    height: 250px;
+    background-color: rgb(207, 220, 15);
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+    border: 2px solid ;
+    text-align: center;
+}
+
+.circle7 {
+    width: 200px ;
+    height: 200px;
+    background-color: rgb(15, 220, 148);
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+    border: 2px solid ;
+    text-align: center;
+}
+
+.circle8 {
+    width: 150px ;
+    height: 150px;
+    background-color: rgb(138, 15, 220);
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+    border: 2px solid ;
+    text-align: center;
+}
+
+.circle9 {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(35, 15, 220);
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+    border: 2px solid ;
+    text-align: center;
+}
+
+.circle10 {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+    border: 2px solid ;
+    text-align: center;
+}
+
+#connecter {
+        height: 30px;   
+        width: 100px;
+        background-color:rgb(17, 233, 244); 
+        color:blueviolet; 
+        border-radius: 30px;
+        box-shadow: 4px 4px 4px grey;
+        font-weight: bold;
+        margin-top: 300px;
+        margin-left: 650px;
+        position: absolute;
+        z-index: 20;
+        left: 50%;
+        margin-left: -50px;
+}   
+
+#retour {
+    height: 30px;
+    width: 100px;
+    background-color:rgb(17, 233, 244); 
+    color:blueviolet; 
+    border-radius: 30px;
+    box-shadow: 4px 4px 4px grey;
+    font-weight: bold;
+    margin-top: 360px;
+    margin-left: 500px;
+    position: absolute;
+    z-index: 20;
+    left: 50%;
+    margin-left: -170px;
+}
+
+#valider {
+    height: 30px;
+    width: 100px;
+    background-color:rgb(17, 233, 244); 
+    color:blueviolet; 
+    border-radius: 30px;
+    box-shadow: 4px 4px 4px grey;
+    font-weight: bold;
+    margin-top: 360px;
+    margin-left: 750px;
+    position: absolute;
+    z-index: 20;
+    left: 50%;
+    margin-left: 70px;
+}
+
+
+

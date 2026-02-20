@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Tina HUYNH - BTS SIO SLAM</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="crt-overlay"></div>
+    <div class="scanline"></div>
+
+    <!-- Navigation -->
+    <nav class="hud-nav">
+        <div class="logo">TINA_H</div>
+        <ul class="menu">
+            <li><a href="#hero" data-text="Accueil">Accueil</a></li>
+            <li><a href="#about" data-text="À Propos">À Propos</a></li>
+            <li><a href="#parcours" data-text="Parcours">Parcours</a></li>
+            <li><a href="#veille" data-text="Veille">Veille</a></li>
+            <li><a href="#lobby" data-text="Contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section id="hero" class="screen active">
+            <div class="hero-content">
+                <h1 class="glitch" data-text="BTS SIO">BTS SIO</h1>
+                <h2 class="subtitle">Services Informatiques aux Organisations</h2>
+
+                <div class="specialization-select">
+                    <div class="spec-card slam active-spec">
+                        <h3>OPTION S.L.A.M</h3>
+                        <p>Solutions Logicielles et Applications Métiers</p>
+                    </div>
+                    <div class="spec-card sisr">
+                        <h3>OPTION S.I.S.R</h3>
+                        <p>Solutions d'Infrastructure, Systèmes et Réseaux</p>
+                    </div>
+                </div>
+
+                <p class="status">SYSTEM: ONLINE_</p>
+                <a href="#about" class="btn-start">INITIALISER LE PROFIL</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="screen">
+            <h2 class="section-title"><span class="icon">👤</span> PLAYER PROFILE</h2>
+            <div class="stats-container">
+                <div class="avatar-box">
+                    <!-- Updated with the generated image path provided previously or placeholder -->
+                    <img src="assets/avatar.png" alt="Avatar" class="avatar-img"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                    <div class="placeholder-avatar"></div>
+                    <div class="level-badge">LVL. 2</div>
+                </div>
+                <div class="bio-box">
+                    <h3>PRESENTATION</h3>
+                    <p>> <strong>Nom:</strong> Tina HUYNH</p>
+                    <p>> <strong>Classe:</strong> Étudiante BTS SIO</p>
+                    <p>> <strong>Formation:</strong> BTS SIO - Option SLAM</p>
+                    <div class="presentation-text">
+                        <p>
+                            Je me présente, c'est Tina. Je suis actuellement étudiante en deuxième
+                            année en BTS SIO (Services Informatiques aux Organisations) option
+                            SLAM (Solution Logicielle et Applications Métier), au sein du lycée
+                            Louis Armand situé dans le 15ème arrondissement de Paris.
+                        </p>
+                        <p>
+                            Sur ce portfolio, vous retrouverez les différentes études, les projets
+                            que j'ai pu effectuer durant mon parcours.
+                        </p>
+                    </div>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <a href="assets/cv.pdf" target="_blank" class="btn-cv">📄 TÉLÉCHARGER MON CV</a>
+                        <a href="assets/8-1 - BTS SIO - 2025 - Annexe 8-1 - Epreuve E5 - Tableau de synthese 1(Tableau de synthèse Épreuve E5).csv"
+                            target="_blank" class="btn-cv">📊 GRILLE DE COMPÉTENCES</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parcours Section (Container) -->
+        <section id="parcours" class="screen">
+            <h2 class="section-title"><span class="icon">🚀</span>PARCOURS SCOLAIRE</h2>
+
+            <!-- 1. Education Timeline (JOURNEY LOG) -->
+            <div class="subsection">
+                <h3 class="subsection-title">> JOURNEY LOG</h3>
+                <div class="timeline">
+                    <!-- Item 1 - BTS -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024 - 2026</div>
+                        <div class="timeline-content">
+                            <h4>BTS SIO (SLAM)</h4>
+                            <p>Lycée Louis Armand - Paris 15e</p>
+                            <span class="tag">Formation</span>
+                        </div>
+                    </div>
+                    <!-- Item 2 - BUT -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023 - 2024</div>
+                        <div class="timeline-content">
+                            <h4>BUT Informatique</h4>
+                            <p>IUT Paris Rives de Seine</p>
+                            <span class="tag">Formation</span>
+                        </div>
+                    </div>
+                    <!-- Item 3 - Certif SecNum -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">Fév. 2025</div>
+                        <div class="timeline-content">
+                            <h4>Certification SecNumAcadémie (ANSSI)</h4>
+                            <p>4 modules validés - Scores de 90% à 100%</p>
+                            <p>Panorama SSI · Authentification · Sécurité Internet · Poste de travail</p>
+                            <span class="tag certif">Certification</span>
+                            <a href="assets/secnum.pdf" target="_blank" class="btn-certif">📜 VOIR
+                                L'ATTESTATION</a>
+                        </div>
+                    </div>
+                    <!-- Item 4 - Certif PIX -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">Mars 2023</div>
+                        <div class="timeline-content">
+                            <h4>Certification PIX</h4>
+                            <p>Score : 338 pix - Lycée Louis Armand</p>
+                            <span class="tag certif">Certification</span>
+                            <a href="assets/pix.pdf" target="_blank" class="btn-certif">📜 VOIR L'ATTESTATION</a>
+                        </div>
+                    </div>
+                    <!-- Item 5 - Bac -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">2020 - 2023</div>
+                        <div class="timeline-content">
+                            <h4>BAC STI2D</h4>
+                            <p>Science et Technologie de l'Industrie et du Développement Durable</p>
+                            <p>Lycée Louis Armand - Paris 15e</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Stages / Internships Timeline (STAGE LOG) -->
+            <div class="subsection">
+                <h3 class="subsection-title stage-title">> STAGES</h3>
+                <div class="stage-timeline">
+                    <!-- Stage 1 - Frutomatik -->
+                    <div class="stage-timeline-item">
+                        <div class="stage-connector">
+                            <div class="stage-icon">⚡</div>
+                            <div class="stage-line"></div>
+                        </div>
+                        <div class="stage-card">
+                            <div class="stage-card-header">
+                                <span class="stage-period">Déc. 2025 - Fév. 2026</span>
+                                <span class="stage-badge">3 mois</span>
+                            </div>
+                            <h4>Stage Développeur</h4>
+                            <p class="stage-company">📍 Frutomatik</p>
+                            <p class="stage-desc">- Développement d'un Espace Franchisés (React & Firebase) <br>
+                                - Automatisation de Processus Métier <br>
+                                - Refonte et Optimisation d'Écosystème Web <br>
+                                - Intégration et Gestion ERP (Odoo) <br>
+                                - Administration Système & DNS</p>
+                            <div class="stage-tech-tags">
+                                <span>HTML/ CSS</span>
+                                <span>PHP</span>
+                                <span>SQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Stage 2 - Développeur Web -->
+                    <div class="stage-timeline-item">
+                        <div class="stage-connector">
+                            <div class="stage-icon">⚡</div>
+                            <div class="stage-line"></div>
+                        </div>
+                        <div class="stage-card">
+                            <div class="stage-card-header">
+                                <span class="stage-period">Mai - Juin 2026</span>
+                                <span class="stage-badge">6 semaines</span>
+                            </div>
+                            <h4>Stage Développeur Web</h4>
+                            <p class="stage-company">📍 CNDES</p>
+                            <p class="stage-desc">- Développement Cross-Platform : Conception et évolution de
+                                fonctionnalités sur l'application web et l'application mobile <br>
+                                - Mutualisation de code : Maintenance d'une logique métier cohérente entre les deux
+                                plateformes <br>
+                                - Cycle de vie du logiciel : Identification, signalement et résolution de bugs sur
+                                navigateurs et mobiles <br>
+                                - Interface Utilisateur (UI/UX) : Adaptation des maquettes pour garantir une expérience
+                                fluide</p>
+                            <div class="stage-tech-tags">
+                                <span>REACT</span>
+                                <span>REACT NATIVE</span>
+                                <span>JAVA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Projects (Quest Log) -->
+            <div class="subsection">
+                <h3 class="subsection-title">> PROJETS</h3>
+                <div class="quest-log-container">
+                    <div class="quest-card completed">
+                        <div class="quest-header">
+                            <span class="quest-status">[COMPLETER]</span>
+                            <h4>E-Portfolio</h4>
+                        </div>
+                        <div class="quest-body">
+                            <p>Un Portfolio fait en HTML/CSS, avec l'intégration d'un formulaire, d'un carrousel et
+                                d'une barre de navigation. Ce portfolio m'a permis de mettre en œuvre tout ce que j'ai
+                                pu apprendre lors de mes cours.</p>
+                            <a href="#" class="btn-quest link-btn">VOIR LE PROJET</a>
+                            <div class="tech-tags"><span>HTML</span><span>CSS</span></div>
+                        </div>
+                    </div>
+                    <div class="quest-card completed">
+                        <div class="quest-header">
+                            <span class="quest-status">[COMPLETER]</span>
+                            <h4>Sudoku</h4>
+                        </div>
+                        <div class="quest-body">
+                            <p>Un projet effectué en C++. Le but étant que lorsque le nombre est incorrect, la case
+                                s'allume en rouge et inversement. Un mode daltonien a également été mis en place
+                                pour faciliter la vision sur le sudoku pour les personnes daltoniennes.</p>
+                            <a href="#" class="btn-quest link-btn">VOIR LE PROJET</a>
+                            <div class="tech-tags"><span>C++</span></div>
+                        </div>
+                    </div>
+                    <div class="quest-card completed">
+                        <div class="quest-header">
+                            <span class="quest-status">[COMPLETER]</span>
+                            <h4>Cible</h4>
+                        </div>
+                        <div class="quest-body">
+                            <p>TP effectué en plusieurs étapes, en HTML/CSS pour le design et JavaScript pour animer le
+                                TP. Création d'un mini jeu avec une cible interactive.</p>
+                            <a href="assets/cible/cible.html" class="btn-quest link-btn">VOIR LE PROJET</a>
+                            <div class="tech-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="screen">
+            <h2 class="section-title"><span class="icon">⚔️</span>COMPETENCES</h2>
+            <div class="skills-grid">
+                <!-- Frontend Branch -->
+                <div class="skill-category">
+                    <h3>> FRONTEND_UI</h3>
+                    <div class="skill-bar-container">
+                        <label>HTML</label>
+                        <div class="progress-bar">
+                            <div class="fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <label>CSS</label>
+                        <div class="progress-bar">
+                            <div class="fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <label>JavaScript</label>
+                        <div class="progress-bar">
+                            <div class="fill" style="width: 35%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend / Languages Branch -->
+                <div class="skill-category">
+                    <h3>> LANGUAGES_OPS</h3>
+                    <div class="skill-bar-container">
+                        <label>Java</label>
+                        <div class="progress-bar">
+                            <div class="fill" style="width: 30%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <label>C</label>
+                        <div class="progress-bar">
+                            <div class="fill" style="width: 40%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <label>C#</label>
+                        <div class="progress-bar">
+                            <div class="fill" style="width: 50%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Veille Section -->
+        <section id="veille" class="screen">
+            <h2 class="section-title"><span class="icon">📡</span>VEILLE TECHNOLOGIQUE</h2>
+            <div class="veille-container">
+                <div class="veille-intro">
+                    <p>> <strong>Sujet:</strong> L'Intelligence Artificielle & les Technologies Web</p>
+                    <p>> <strong>Sources:</strong> Dev.to — Articles mis à jour automatiquement</p>
+                </div>
+                <div class="veille-filters">
+                    <button class="veille-tag active" data-tag="ai">🤖 IA</button>
+                    <button class="veille-tag" data-tag="webdev">🌐 Web Dev</button>
+                    <button class="veille-tag" data-tag="cybersecurity">🔒 Cybersécurité</button>
+                    <button class="veille-tag" data-tag="programming">💻 Programmation</button>
+                </div>
+                <div class="news-grid" id="veille-grid">
+                    <!-- Loading state -->
+                    <div class="news-card loading-card">
+                        <div class="news-date">SCANNING...</div>
+                        <h4>Récupération des données...</h4>
+                        <p>Connexion aux flux en cours...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section - RESTORED PREVIOUS VERSION -->
+        <section id="lobby" class="screen">
+            <h2 class="section-title"><span class="icon">💬</span> LOBBY / INVITE</h2>
+            <div class="chat-interface">
+                <div class="chat-log">
+                    <p class="system-msg">> Tina_H is ready to connect.</p>
+                    <p class="system-msg">> Send a message to start collaboration.</p>
+                </div>
+
+                <form class="contact-form" action="mailto:tina.hyh17@gmail.com" method="post" enctype="text/plain">
+
+                    <div class="form-group">
+                        <label for="username">USERNAME:</label>
+                        <input type="text" id="username" name="username" placeholder="Entrez votre nom" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">MESSAGE:</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tapez votre message..."
+                            required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-send">ENVOYER</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>GAME OVER - BTS SIO 2026</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
