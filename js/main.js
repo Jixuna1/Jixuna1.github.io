@@ -3,28 +3,26 @@ document.addEventListener('DOMContentLoaded', () => {
     /* --- TYPEWRITER EFFECT --- */
     const heroStatus = document.querySelector('.status');
     const textToType = "SYSTEM: ONLINE_";
-    heroStatus.textContent = "";
-
-    let charIndex = 0;
-    function typeWriter() {
-        if (charIndex < textToType.length) {
-            heroStatus.textContent += textToType.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeWriter, 100);
-        } else {
-            // Blink cursor effect at end
-            setInterval(() => {
-                if (heroStatus.textContent.endsWith('_')) {
-                    heroStatus.textContent = heroStatus.textContent.slice(0, -1);
-                } else {
-                    heroStatus.textContent += '_';
-                }
-            }, 800);
+    if (heroStatus) {
+        heroStatus.textContent = "";
+        let charIndex = 0;
+        function typeWriter() {
+            if (charIndex < textToType.length) {
+                heroStatus.textContent += textToType.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 100);
+            } else {
+                setInterval(() => {
+                    if (heroStatus.textContent.endsWith('_')) {
+                        heroStatus.textContent = heroStatus.textContent.slice(0, -1);
+                    } else {
+                        heroStatus.textContent += '_';
+                    }
+                }, 800);
+            }
         }
+        setTimeout(typeWriter, 1000);
     }
-    // Start typing after a small delay
-    setTimeout(typeWriter, 1000);
-
 
     /* --- SCROLL OBSERVER (Animations) --- */
     const observerOptions = {
@@ -36,8 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-
-                // Animate skills if this is a skill bar
                 if (entry.target.classList.contains('skill-bar-container')) {
                     const bar = entry.target.querySelector('.fill');
                     if (bar) {
@@ -52,57 +48,60 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Observe Sections for fade-in
-    document.querySelectorAll('section, .subsection, .spec-card, .timeline-item, .quest-card, .news-card').forEach(el => {
+    document.querySelectorAll('section, .subsection, .spec-card, .timeline-item, .quest-card, .news-card, .skill-bar-container').forEach(el => {
         el.classList.add('hidden');
         observer.observe(el);
     });
 
-    // Observer specifically for skill bars to trigger animation individually
-    document.querySelectorAll('.skill-bar-container').forEach(el => {
-        observer.observe(el);
-    });
-
-    /* --- SKILL BARS ANIMATION (Deprecated global function, handled by observer now) --- */
-
-
-
-    /* --- FORM HANDLING --- */
+    /* --- FORM HANDLING (CORRIGÉ POUR L'ENVOI) --- */
     const form = document.querySelector('.contact-form');
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Empêche le rechargement de la page
 
-        const btn = form.querySelector('.btn-send');
-        const originalText = btn.textContent;
-
-        btn.textContent = "SENDING...";
-        btn.disabled = true;
-
-        setTimeout(() => {
-            btn.textContent = "MESSAGE SENT!";
-            btn.style.background = "var(--sentinel-green)";
-
-            // Log to simulated chat
-            const chatLog = document.querySelector('.chat-log');
+            const btn = form.querySelector('.btn-send');
+            const originalText = btn.textContent;
+            
+            // Récupération des données
             const username = document.getElementById('username').value;
             const msg = document.getElementById('message').value;
+            const myEmail = "tina.hyh17@gmail.com";
 
-            const newLog = document.createElement('p');
-            newLog.style.color = "var(--text-main)";
-            newLog.innerHTML = `> <strong>${username}</strong>: ${msg}`;
-            chatLog.appendChild(newLog);
-            chatLog.scrollTop = chatLog.scrollHeight;
+            // Préparation du mailto
+            const subject = encodeURIComponent(`Contact Portfolio de ${username}`);
+            const body = encodeURIComponent(`Nom: ${username}\n\nMessage:\n${msg}`);
 
-            form.reset();
+            // Animation du bouton
+            btn.textContent = "SENDING...";
+            btn.disabled = true;
+
+            // Déclenchement de l'envoi (ouvre le client mail)
+            window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
 
             setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = "";
-                btn.disabled = false;
-            }, 3000);
-        }, 1500);
-    });
+                btn.textContent = "MESSAGE SENT!";
+                btn.style.background = "var(--sentinel-green)";
 
+                // Log dans le chat simulé
+                const chatLog = document.querySelector('.chat-log');
+                if (chatLog) {
+                    const newLog = document.createElement('p');
+                    newLog.style.color = "var(--text-main)";
+                    newLog.innerHTML = `> <strong>${username}</strong>: ${msg}`;
+                    chatLog.appendChild(newLog);
+                    chatLog.scrollTop = chatLog.scrollHeight;
+                }
+
+                form.reset();
+
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = "";
+                    btn.disabled = false;
+                }, 3000);
+            }, 1000);
+        });
+    }
 
     /* --- VEILLE DYNAMIQUE (Dev.to API) --- */
     const veilleGrid = document.getElementById('veille-grid');
@@ -111,10 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function formatDate(dateStr) {
         const d = new Date(dateStr);
-        const day = String(d.getDate()).padStart(2, '0');
-        const month = String(d.getMonth() + 1).padStart(2, '0');
-        const year = d.getFullYear();
-        return `${day}.${month}.${year}`;
+        return `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${d.getFullYear()}`;
     }
 
     function truncateText(text, maxLen) {
@@ -123,97 +119,53 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function fetchArticles(tag) {
-        veilleGrid.innerHTML = `
-            <div class="news-card loading-card">
-                <div class="news-date">SCANNING...</div>
-                <h4>Récupération des données...</h4>
-                <p>Connexion au flux [${tag.toUpperCase()}]...</p>
-            </div>
-        `;
+        if (!veilleGrid) return;
+        veilleGrid.innerHTML = `<div class="news-card"><h4>SCANNING [${tag.toUpperCase()}]...</h4></div>`;
 
         try {
             const response = await fetch(`https://dev.to/api/articles?tag=${tag}&per_page=6&top=7`);
             if (!response.ok) throw new Error('Network error');
             const articles = await response.json();
 
-            if (articles.length === 0) {
-                veilleGrid.innerHTML = `
-                    <div class="news-card">
-                        <div class="news-date">ERROR</div>
-                        <h4>Aucun article trouvé</h4>
-                        <p>Aucun résultat pour le tag "${tag}".</p>
-                    </div>
-                `;
-                return;
-            }
-
             veilleGrid.innerHTML = '';
-
             articles.forEach((article, index) => {
                 const card = document.createElement('a');
                 card.href = article.url;
                 card.target = '_blank';
                 card.rel = 'noopener noreferrer';
-                card.className = 'news-card';
+                card.className = 'news-card hidden';
                 card.style.animationDelay = `${index * 0.1}s`;
-
                 card.innerHTML = `
                     <div class="news-date">${formatDate(article.published_at)}</div>
                     <h4>${article.title}</h4>
                     <p>${truncateText(article.description)}</p>
                     <div class="news-meta">
-                        <span class="news-author">👤 ${article.user.name}</span>
-                        <span class="news-reactions">❤️ ${article.positive_reactions_count}</span>
-                    </div>
-                `;
-
+                        <span>👤 ${article.user.name}</span>
+                        <span>❤️ ${article.positive_reactions_count}</span>
+                    </div>`;
                 veilleGrid.appendChild(card);
+                observer.observe(card);
             });
-
-            // Re-observe new cards for scroll animation
-            document.querySelectorAll('.news-card').forEach(el => {
-                el.classList.add('hidden');
-                observer.observe(el);
-            });
-
         } catch (error) {
-            veilleGrid.innerHTML = `
-                <div class="news-card">
-                    <div class="news-date">ERROR</div>
-                    <h4>Connexion échouée</h4>
-                    <p>Impossible de récupérer les articles. Vérifiez votre connexion internet.</p>
-                </div>
-            `;
+            veilleGrid.innerHTML = `<div class="news-card"><h4>ERROR</h4><p>Connexion échouée.</p></div>`;
         }
     }
 
-    // Filter tag click handlers
     veilleTags.forEach(btn => {
         btn.addEventListener('click', () => {
             veilleTags.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            currentTag = btn.dataset.tag;
-            fetchArticles(currentTag);
+            fetchArticles(btn.dataset.tag);
         });
     });
 
-    // Initial load
     fetchArticles(currentTag);
-
 });
 
-/* --- Add dynamic CSS for hidden sections --- */
+/* --- Dynamic CSS --- */
 const style = document.createElement('style');
 style.innerHTML = `
-    section.hidden, .subsection.hidden, .spec-card.hidden, .timeline-item.hidden, .quest-card.hidden, .news-card.hidden {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    section.visible, .subsection.visible, .spec-card.visible, .timeline-item.visible, .quest-card.visible, .news-card.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
+    .hidden { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .visible { opacity: 1; transform: translateY(0); }
 `;
 document.head.appendChild(style);
