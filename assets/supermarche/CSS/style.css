@@ -1,0 +1,275 @@
+/* --- Reset et Styles de base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F5F7FA; /* Fond gris clair */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Header --- */
+.header {
+    background-color: #ffffff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-weight: 40;
+    font-size: 1.2rem;
+    color: #0056B3;
+}
+
+/* 1. Conteneur du logo dans l'en-tête */
+.header .logo {
+    align-items: center; 
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.logo-img {
+    height: 50px; 
+    width: auto; 
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    font-weight: 600;
+}
+
+.avatar-circle {
+    width: 35px;
+    height: 35px;
+    background-color: #E2E8F0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Contenu Principal --- */
+.main-container {
+    flex: 1; /* Prend l'espace restant pour pousser le footer en bas */
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Section de Bienvenue --- */
+.welcome-section {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.welcome-section h1 {
+    font-size: 2.5rem;
+    color: #1A202C;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-section p {
+    font-size: 1.1rem;
+    color: #718096;
+}
+
+/* --- Grille de Boutons --- */
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+/* --- Style des Cartes/Boutons --- */
+.action-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+    border-color: #0056B3;
+}
+
+.card-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    color: #718096;
+}
+
+/* Style spécifique pour le bouton Admin */
+.action-card.admin-card {
+    background-color: #2D3748; /* Fond foncé */
+    color: #ffffff;
+}
+
+.action-card.admin-card .card-desc {
+     color: #A0AEC0;
+}
+
+.action-card.admin-card:hover {
+     border-color: #718096;
+}
+
+/* --- Footer --- */
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    color: #718096;
+}
+
+
+/* CSS Spécifique au formulaire */
+.form-container { /* Style hérité de commande.php précédent */ } 
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+.btn-retour, .btn-suivant, .btn-valider {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    flex-grow: 1; /* Permet aux boutons de prendre la même largeur */
+}
+.btn-retour { background-color: #A0AEC0; color: white; }
+.btn-valider { background-color: #0056B3; color: white; }
+
+/* Styles spécifiques pour l'affichage des produits */
+        .product-list {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+        .product-list th, .product-list td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .product-list th {
+            background-color: #EDF2F7;
+            font-weight: 700;
+        }
+        .product-list tr:hover {
+            background-color: #F7FAFC;
+        }
+        .product-select { width: 100px; }
+        
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .btn-retour, .btn-annuler, .btn-ajouter, .btn-valider {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            flex-grow: 1; 
+        }
+        .btn-retour { background-color: #A0AEC0; color: white; }
+        .btn-annuler { background-color: #E53E3E; color: white; }
+        .btn-ajouter { background-color: #e5c43e; color: white; }
+        .btn-valider { background-color: #38A169; color: white; } /* Changement de couleur pour valider final */
+
+
+        /* Styles spécifiques pour le panier */
+        .cart-container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        .cart-table th, .cart-table td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .cart-table th { background-color: #EDF2F7; }
+        .cart-summary {
+            float: right;
+            width: 100%;
+            max-width: 300px;
+        }
+        .cart-summary div {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+        }
+        .cart-summary .total-row {
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-top: 2px solid #0056B3;
+            margin-top: 0.5rem;
+            padding-top: 1rem !important;
+        }
+        .button-group {
+            display: flex;
+            justify-content: flex-end; /* Aligne les boutons à droite */
+            gap: 10px;
+            margin-top: 5rem;
+            clear: both; /* S'assure qu'ils ne flottent pas à côté du résumé */
+        }
+        .btn-retour, .btn-finaliser {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+        .btn-retour { background-color: #A0AEC0; color: white; }
+        .btn-finaliser { background-color: #38A169; color: white; }
