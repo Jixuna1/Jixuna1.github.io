@@ -5,31 +5,58 @@
     <title>Détails du Projet - Gestion Patients</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        :root {
+            --neon-cyan: #00f2ff; /* Ajuste si ta couleur est différente */
+            --bg-dark: #0d0d0d;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: sans-serif;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 20px;
+        }
+
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             padding: 20px;
         }
+
         .gallery img {
             width: 100%;
+            height: 200px; /* Hauteur fixe pour l'alignement */
+            object-fit: cover; /* Recadre proprement */
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            transition: transform 0.3s, border 0.3s;
+            cursor: pointer;
+            border: 1px solid transparent;
         }
+
         .gallery img:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
+            border-color: var(--neon-cyan);
         }
 
         .btn-quest {
             display: inline-block;
-            margin-bottom: 1rem;
+            margin: 20px;
             padding: 0.5rem 1rem;
             background: transparent;
             border: 1px solid var(--neon-cyan);
             color: var(--neon-cyan);
             font-size: 0.8rem;
-            font-family: var(--font-header);
+            text-decoration: none;
             text-transform: uppercase;
             transition: 0.3s;
             text-shadow: 0 0 5px var(--neon-cyan);
@@ -38,7 +65,54 @@
         .btn-quest:hover {
             background: var(--neon-cyan);
             color: var(--bg-dark);
-            box-shadow: 0 0 10px var(--neon-cyan);
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
+
+        /* --- SYSTÈME DE MODALE --- */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 80%;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 5px;
+            box-shadow: 0 0 20px var(--neon-cyan);
+            animation: fadeIn 0.3s ease;
+        }
+
+        #caption {
+            margin-top: 15px;
+            color: var(--neon-cyan);
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -49,18 +123,43 @@
     <h1>PharmaSI</h1>
     
     <div class="gallery">
-        <img src="assets/inter_graph.png" alt="Interface graphique">
-        <img src="assets/del_regio.png" alt="Accès possible en tant que délégué régional">
-        <img src="assets/respon_acc.png" alt="Accès possible en tant que responsable de secteur">
-        <img src="assets/form_profil_interdit.png" alt="Profil non présent sur la base de données">
-        <img src="assets/login_inco.png" alt="Erreur lorsque les logins sont incorrects">
-        <img src="assets/form_del.png" alt="Formulaire du délégué régional">
-        <img src="assets/form_visi.png" alt="Formulaire du visiteur">
-        <img src="assets/form_respo.png" alt="Formulaire du responsable de secteur">
-        <img src="assets/form_prat.png" alt="Formulaire des praticiens">
-        <img src="assets/form_prod.png" alt="Formulaire des produits">
-        <img src="assets/form_rapport.png" alt="Formulaire rapport dde visite">  
+        <img src="assets/inter_graph.png" alt="Interface graphique" onclick="zoomImg(this)">
+        <img src="assets/del_regio.png" alt="Accès délégué régional" onclick="zoomImg(this)">
+        <img src="assets/respon_acc.png" alt="Accès responsable de secteur" onclick="zoomImg(this)">
+        <img src="assets/form_profil_interdit.png" alt="Profil inexistant" onclick="zoomImg(this)">
+        <img src="assets/login_inco.png" alt="Logins incorrects" onclick="zoomImg(this)">
+        <img src="assets/form_del.png" alt="Formulaire délégué" onclick="zoomImg(this)">
+        <img src="assets/form_visi.png" alt="Formulaire visiteur" onclick="zoomImg(this)">
+        <img src="assets/form_respo.png" alt="Formulaire responsable" onclick="zoomImg(this)">
+        <img src="assets/form_prat.png" alt="Formulaire praticiens" onclick="zoomImg(this)">
+        <img src="assets/form_prod.png" alt="Formulaire produits" onclick="zoomImg(this)">
+        <img src="assets/form_rapport.png" alt="Rapport de visite" onclick="zoomImg(this)">  
     </div>
+
+    <div id="imageModal" class="modal" onclick="this.style.display='none'">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="fullImg">
+        <div id="caption"></div>
+    </div>
+
+    <script>
+        function zoomImg(element) {
+            const modal = document.getElementById("imageModal");
+            const fullImg = document.getElementById("fullImg");
+            const captionText = document.getElementById("caption");
+
+            modal.style.display = "flex";
+            fullImg.src = element.src;
+            captionText.innerHTML = element.alt; // Affiche la description de l'image
+        }
+
+        // Fermer avec la touche Echap
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                document.getElementById("imageModal").style.display = "none";
+            }
+        });
+    </script>
 
 </body>
 </html>
