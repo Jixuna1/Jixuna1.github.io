@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails du Projet - Gestion Patients</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        .back-link { margin: 20px; display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-link">← Retour au portfolio</a>
+    
+    <h1>PharmaSI</h1>
+    
+    <div class="gallery">
+        <img src="assets/inter_graph.png" alt="Interface graphique">
+        <img src="assets/del_regio.png" alt="Accès possible en tant que délégué régional">
+        <img src="assets/respon_acc.png" alt="Accès possible en tant que responsable de secteur">
+        <img src="assets/form_profil_interdit.png" alt="Profil non présent sur la base de données">
+        <img src="assets/login_inco.png" alt="Erreur lorsque les logins sont incorrects">
+        <img src="assets/form_del.png" alt="Formulaire du délégué régional">
+        <img src="assets/form_visi.png" alt="Formulaire du visiteur">
+        <img src="assets/form_respo.png" alt="Formulaire du responsable de secteur">
+        <img src="assets/form_prat.png" alt="Formulaire des praticiens">
+        <img src="assets/form_prod.png" alt="Formulaire des produits">
+        <img src="assets/form_rapport.png" alt="Formulaire rapport dde visite">  
+    </div>
+
+</body>
+</html>
