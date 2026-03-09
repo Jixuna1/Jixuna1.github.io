@@ -20,12 +20,31 @@
         .gallery img:hover {
             transform: scale(1.05);
         }
-        .back-link { margin: 20px; display: inline-block; }
+
+        .btn-quest {
+            display: inline-block;
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            font-size: 0.8rem;
+            font-family: var(--font-header);
+            text-transform: uppercase;
+            transition: 0.3s;
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+        
+        .btn-quest:hover {
+            background: var(--neon-cyan);
+            color: var(--bg-dark);
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-link">← Retour au portfolio</a>
+    <a href="index.html" class="btn-quest">← Retour au portfolio</a>
     
     <h1>PharmaSI</h1>
     
