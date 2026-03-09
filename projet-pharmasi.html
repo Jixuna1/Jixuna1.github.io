@@ -2,162 +2,161 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Détails du Projet - Gestion Patients</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Détails du Projet - PharmaSI</title>
     <style>
         :root {
-            --neon-cyan: #00f2ff; /* Ajuste si ta couleur est différente */
+            --neon-cyan: #00f2ff;
             --bg-dark: #0d0d0d;
         }
 
         body {
             background-color: var(--bg-dark);
             color: white;
-            font-family: sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
+            padding: 20px;
         }
 
         h1 {
             text-align: center;
             color: var(--neon-cyan);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 20px;
+            text-shadow: 0 0 10px var(--neon-cyan);
         }
 
+        /* Grille d'images */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .gallery img {
             width: 100%;
-            height: 200px; /* Hauteur fixe pour l'alignement */
-            object-fit: cover; /* Recadre proprement */
+            height: 200px;
+            object-fit: cover;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-            transition: transform 0.3s, border 0.3s;
             cursor: pointer;
-            border: 1px solid transparent;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
         }
 
         .gallery img:hover {
-            transform: scale(1.03);
+            transform: translateY(-5px);
             border-color: var(--neon-cyan);
-        }
-
-        .btn-quest {
-            display: inline-block;
-            margin: 20px;
-            padding: 0.5rem 1rem;
-            background: transparent;
-            border: 1px solid var(--neon-cyan);
-            color: var(--neon-cyan);
-            font-size: 0.8rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: 0.3s;
-            text-shadow: 0 0 5px var(--neon-cyan);
-        }
-        
-        .btn-quest:hover {
-            background: var(--neon-cyan);
-            color: var(--bg-dark);
             box-shadow: 0 0 15px var(--neon-cyan);
         }
 
-        /* --- SYSTÈME DE MODALE --- */
-        .modal {
-            display: none; 
+        /* --- STYLE DE LA MODALE (L'AGRANDISSEMENT) --- */
+        #imageModal {
+            display: none; /* Caché par défaut */
             position: fixed;
-            z-index: 9999;
+            z-index: 10000;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            flex-direction: column;
-            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.9);
             align-items: center;
-            cursor: zoom-out;
+            justify-content: center;
+            flex-direction: column;
         }
 
-        .modal-content {
+        #fullImg {
             max-width: 90%;
             max-height: 80%;
             border: 2px solid var(--neon-cyan);
-            border-radius: 5px;
-            box-shadow: 0 0 20px var(--neon-cyan);
-            animation: fadeIn 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.5);
         }
 
         #caption {
-            margin-top: 15px;
+            margin-top: 20px;
             color: var(--neon-cyan);
             font-size: 1.2rem;
-            font-weight: bold;
-            text-align: center;
+            text-transform: uppercase;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .close-modal {
+        .close-btn {
             position: absolute;
             top: 20px;
-            right: 30px;
+            right: 40px;
             color: white;
-            font-size: 40px;
+            font-size: 50px;
             cursor: pointer;
+        }
+
+        .btn-quest {
+            display: inline-block;
+            text-decoration: none;
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            padding: 10px 20px;
+            margin-bottom: 30px;
+            transition: 0.3s;
+        }
+
+        .btn-quest:hover {
+            background: var(--neon-cyan);
+            color: black;
         }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="btn-quest link-btn">← Retour au portfolio</a>
+    <a href="index.html" class="btn-quest">← Retour au portfolio</a>
     
-    <h1>PharmaSI</h1>
+    <h1>PharmaSI - Galerie Captures</h1>
     
     <div class="gallery">
-        <img src="assets/inter_graph.png" alt="Interface graphique" onclick="zoomImg(this)">
-        <img src="assets/del_regio.png" alt="Accès délégué régional" onclick="zoomImg(this)">
-        <img src="assets/respon_acc.png" alt="Accès responsable de secteur" onclick="zoomImg(this)">
-        <img src="assets/form_profil_interdit.png" alt="Profil inexistant" onclick="zoomImg(this)">
-        <img src="assets/login_inco.png" alt="Logins incorrects" onclick="zoomImg(this)">
-        <img src="assets/form_del.png" alt="Formulaire délégué" onclick="zoomImg(this)">
-        <img src="assets/form_visi.png" alt="Formulaire visiteur" onclick="zoomImg(this)">
-        <img src="assets/form_respo.png" alt="Formulaire responsable" onclick="zoomImg(this)">
-        <img src="assets/form_prat.png" alt="Formulaire praticiens" onclick="zoomImg(this)">
-        <img src="assets/form_prod.png" alt="Formulaire produits" onclick="zoomImg(this)">
-        <img src="assets/form_rapport.png" alt="Rapport de visite" onclick="zoomImg(this)">  
+        <img src="assets/inter_graph.png" alt="Interface graphique" onclick="openZoom(this)">
+        <img src="assets/del_regio.png" alt="Accès délégué régional" onclick="openZoom(this)">
+        <img src="assets/respon_acc.png" alt="Accès responsable" onclick="openZoom(this)">
+        <img src="assets/form_profil_interdit.png" alt="Profil inexistant" onclick="openZoom(this)">
+        <img src="assets/login_inco.png" alt="Erreur login" onclick="openZoom(this)">
+        <img src="assets/form_del.png" alt="Formulaire délégué" onclick="openZoom(this)">
+        <img src="assets/form_visi.png" alt="Formulaire visiteur" onclick="openZoom(this)">
+        <img src="assets/form_respo.png" alt="Formulaire responsable" onclick="openZoom(this)">
+        <img src="assets/form_prat.png" alt="Formulaire praticiens" onclick="openZoom(this)">
+        <img src="assets/form_prod.png" alt="Formulaire produits" onclick="openZoom(this)">
+        <img src="assets/form_rapport.png" alt="Rapport de visite" onclick="openZoom(this)">  
     </div>
 
-    <div id="imageModal" class="modal" onclick="this.style.display='none'">
-        <span class="close-modal">&times;</span>
-        <img class="modal-content" id="fullImg">
+    <div id="imageModal">
+        <span class="close-btn" onclick="closeZoom()">&times;</span>
+        <img id="fullImg" src="" alt="">
         <div id="caption"></div>
     </div>
 
     <script>
-        function zoomImg(element) {
-            const modal = document.getElementById("imageModal");
-            const fullImg = document.getElementById("fullImg");
-            const captionText = document.getElementById("caption");
+        // Sélection des éléments une seule fois
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("fullImg");
+        const captionText = document.getElementById("caption");
 
-            modal.style.display = "flex";
-            fullImg.src = element.src;
-            captionText.innerHTML = element.alt; // Affiche la description de l'image
+        // Fonction pour ouvrir le zoom
+        function openZoom(imgElement) {
+            modal.style.display = "flex"; // On utilise flex pour centrer l'image
+            modalImg.src = imgElement.src;
+            captionText.innerHTML = imgElement.alt;
+        }
+
+        // Fonction pour fermer le zoom
+        function closeZoom() {
+            modal.style.display = "none";
+        }
+
+        // Fermer si on clique sur le fond noir
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeZoom();
+            }
         }
 
         // Fermer avec la touche Echap
         document.addEventListener('keydown', function(e) {
-            if (e.key === "Escape") {
-                document.getElementById("imageModal").style.display = "none";
-            }
+            if (e.key === "Escape") closeZoom();
         });
     </script>
 
