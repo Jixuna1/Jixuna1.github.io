@@ -483,6 +483,12 @@ section {
 }
 
 /* --- PARCOURS CONTAINER --- */
+#formation {
+    justify-content: flex-start;
+    /* Allow scrolling for long content */
+    padding-top: 8rem;
+}
+
 #parcours {
     justify-content: flex-start;
     /* Allow scrolling for long content */
@@ -1063,4 +1069,5 @@ textarea:focus {
 .btn-send:hover {
     background: var(--neon-purple);
     box-shadow: 0 0 30px var(--neon-purple);
+
 }
