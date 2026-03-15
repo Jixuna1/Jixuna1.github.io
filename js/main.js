@@ -115,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             if (tag === 'security-alerts') {
-                // Lien Google Alert intégré
                 const googleRssUrl = "https://www.google.fr/alerts/feeds/02188274778194179473/12106481984747642305";
                 url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(googleRssUrl)}`;
                 isGoogleAlert = true;
@@ -157,11 +156,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // MODIFICATION APPORTÉE ICI
     veilleTags.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            const tag = e.target.closest('.veille-tag').dataset.tag;
+            console.log("Tag cliqué :", tag); // Vérifie ceci dans la console
+            
             veilleTags.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            fetchArticles(btn.dataset.tag);
+            fetchArticles(tag);
         });
     });
 
