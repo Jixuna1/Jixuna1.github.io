@@ -130,12 +130,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const articles = isGoogleAlert ? data.items : data;
 
             veilleGrid.innerHTML = '';
+            
+            // MODIFICATION : Gestion sécurisée des données pour éviter les plantages
             articles.forEach((article, index) => {
-                const title = isGoogleAlert ? article.title : article.title;
+                const title = article.title;
                 const link = isGoogleAlert ? article.link : article.url;
                 const date = isGoogleAlert ? article.pubDate : article.published_at;
-                const desc = isGoogleAlert ? article.description : article.description;
-                const meta = isGoogleAlert ? '⚠️ GOOGLE_ALERT' : `👤 ${article.user.name} | ❤️ ${article.positive_reactions_count}`;
+                const desc = article.description || "Pas de description disponible.";
+                
+                // Vérification sécurisée pour l'auteur (Dev.to seulement)
+                const authorName = (article.user && article.user.name) ? article.user.name : "Anonyme";
+                const reactions = article.positive_reactions_count || 0;
+                const meta = isGoogleAlert ? '⚠️ GOOGLE_ALERT' : `👤 ${authorName} | ❤️ ${reactions}`;
 
                 const card = document.createElement('a');
                 card.href = link;
@@ -152,18 +158,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 observer.observe(card);
             });
         } catch (error) {
-            veilleGrid.innerHTML = `<div class="news-card"><h4>ERROR</h4><p>Connexion échouée.</p></div>`;
+            console.error("Erreur de veille :", error);
+            veilleGrid.innerHTML = `<div class="news-card"><h4>ERROR</h4><p>Connexion échouée ou flux vide.</p></div>`;
         }
     }
 
-    // MODIFICATION APPORTÉE ICI
     veilleTags.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            const tag = e.target.closest('.veille-tag').dataset.tag;
-            console.log("Tag cliqué :", tag); // Vérifie ceci dans la console
+            const clickedBtn = e.target.closest('.veille-tag');
+            if (!clickedBtn) return;
+            const tag = clickedBtn.dataset.tag;
             
             veilleTags.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            clickedBtn.classList.add('active');
             fetchArticles(tag);
         });
     });
