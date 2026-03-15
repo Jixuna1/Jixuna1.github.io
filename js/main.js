@@ -116,7 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let isGoogleAlert = false;
 
         try {
-            if (tag === 'security-alerts') {
+            // CORRECTION : Correspondance exacte avec ton HTML (data-tag="cybersecurity")
+            if (tag === 'cybersecurity') {
                 const googleRssUrl = "https://www.google.fr/alerts/feeds/02188274778194179473/12106481984747642305";
                 url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(googleRssUrl)}`;
                 isGoogleAlert = true;
