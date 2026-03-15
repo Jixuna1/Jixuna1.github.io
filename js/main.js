@@ -108,6 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchArticles(tag) {
         if (!veilleGrid) return;
+        
+        console.log("Tentative de récupération pour le tag :", tag);
         veilleGrid.innerHTML = `<div class="news-card"><h4>SCANNING [${tag.toUpperCase()}]...</h4></div>`;
 
         let url;
@@ -124,21 +126,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const response = await fetch(url);
-            if (!response.ok) throw new Error('Network error');
+            if (!response.ok) throw new Error(`Erreur réseau : ${response.status}`);
             const data = await response.json();
             
             const articles = isGoogleAlert ? data.items : data;
 
+            if (!articles || articles.length === 0) {
+                veilleGrid.innerHTML = `<div class="news-card"><h4>SCAN COMPLETE</h4><p>Aucun article trouvé pour: ${tag}</p></div>`;
+                return;
+            }
+
             veilleGrid.innerHTML = '';
             
-            // MODIFICATION : Gestion sécurisée des données pour éviter les plantages
             articles.forEach((article, index) => {
                 const title = article.title;
                 const link = isGoogleAlert ? article.link : article.url;
                 const date = isGoogleAlert ? article.pubDate : article.published_at;
                 const desc = article.description || "Pas de description disponible.";
                 
-                // Vérification sécurisée pour l'auteur (Dev.to seulement)
                 const authorName = (article.user && article.user.name) ? article.user.name : "Anonyme";
                 const reactions = article.positive_reactions_count || 0;
                 const meta = isGoogleAlert ? '⚠️ GOOGLE_ALERT' : `👤 ${authorName} | ❤️ ${reactions}`;
@@ -158,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 observer.observe(card);
             });
         } catch (error) {
-            console.error("Erreur de veille :", error);
+            console.error("Erreur détaillée de veille :", error);
             veilleGrid.innerHTML = `<div class="news-card"><h4>ERROR</h4><p>Connexion échouée ou flux vide.</p></div>`;
         }
     }
