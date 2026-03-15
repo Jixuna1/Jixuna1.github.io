@@ -53,36 +53,26 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    /* --- FORM HANDLING (CORRIGÉ POUR L'ENVOI) --- */
+    /* --- FORM HANDLING --- */
     const form = document.querySelector('.contact-form');
     if (form) {
         form.addEventListener('submit', (e) => {
-            e.preventDefault(); // Empêche le rechargement de la page
-
+            e.preventDefault();
             const btn = form.querySelector('.btn-send');
             const originalText = btn.textContent;
-            
-            // Récupération des données
             const username = document.getElementById('username').value;
             const msg = document.getElementById('message').value;
             const myEmail = "tina.hyh17@gmail.com";
-
-            // Préparation du mailto
             const subject = encodeURIComponent(`Contact Portfolio de ${username}`);
             const body = encodeURIComponent(`Nom: ${username}\n\nMessage:\n${msg}`);
 
-            // Animation du bouton
             btn.textContent = "SENDING...";
             btn.disabled = true;
-
-            // Déclenchement de l'envoi (ouvre le client mail)
             window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
 
             setTimeout(() => {
                 btn.textContent = "MESSAGE SENT!";
                 btn.style.background = "var(--sentinel-green)";
-
-                // Log dans le chat simulé
                 const chatLog = document.querySelector('.chat-log');
                 if (chatLog) {
                     const newLog = document.createElement('p');
@@ -91,9 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     chatLog.appendChild(newLog);
                     chatLog.scrollTop = chatLog.scrollHeight;
                 }
-
                 form.reset();
-
                 setTimeout(() => {
                     btn.textContent = originalText;
                     btn.style.background = "";
@@ -103,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* --- VEILLE DYNAMIQUE (Dev.to API) --- */
+    /* --- VEILLE DYNAMIQUE (Dev.to API + Google Alerts) --- */
     const veilleGrid = document.getElementById('veille-grid');
     const veilleTags = document.querySelectorAll('.veille-tag');
     let currentTag = 'ai';
@@ -122,27 +110,45 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!veilleGrid) return;
         veilleGrid.innerHTML = `<div class="news-card"><h4>SCANNING [${tag.toUpperCase()}]...</h4></div>`;
 
+        let url;
+        let isGoogleAlert = false;
+
         try {
-            const response = await fetch(`https://dev.to/api/articles?tag=${tag}&per_page=6&top=7`);
+            if (tag === 'security-alerts') {
+                // Lien Google Alert intégré
+                const googleRssUrl = "https://www.google.fr/alerts/feeds/02188274778194179473/12106481984747642305";
+                url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(googleRssUrl)}`;
+                isGoogleAlert = true;
+            } else {
+                url = `https://dev.to/api/articles?tag=${tag}&per_page=6&top=7`;
+                isGoogleAlert = false;
+            }
+
+            const response = await fetch(url);
             if (!response.ok) throw new Error('Network error');
-            const articles = await response.json();
+            const data = await response.json();
+            
+            const articles = isGoogleAlert ? data.items : data;
 
             veilleGrid.innerHTML = '';
             articles.forEach((article, index) => {
+                const title = isGoogleAlert ? article.title : article.title;
+                const link = isGoogleAlert ? article.link : article.url;
+                const date = isGoogleAlert ? article.pubDate : article.published_at;
+                const desc = isGoogleAlert ? article.description : article.description;
+                const meta = isGoogleAlert ? '⚠️ GOOGLE_ALERT' : `👤 ${article.user.name} | ❤️ ${article.positive_reactions_count}`;
+
                 const card = document.createElement('a');
-                card.href = article.url;
+                card.href = link;
                 card.target = '_blank';
                 card.rel = 'noopener noreferrer';
                 card.className = 'news-card hidden';
                 card.style.animationDelay = `${index * 0.1}s`;
                 card.innerHTML = `
-                    <div class="news-date">${formatDate(article.published_at)}</div>
-                    <h4>${article.title}</h4>
-                    <p>${truncateText(article.description)}</p>
-                    <div class="news-meta">
-                        <span>👤 ${article.user.name}</span>
-                        <span>❤️ ${article.positive_reactions_count}</span>
-                    </div>`;
+                    <div class="news-date">${formatDate(date)}</div>
+                    <h4>${title}</h4>
+                    <p>${truncateText(desc)}</p>
+                    <div class="news-meta"><span>${meta}</span></div>`;
                 veilleGrid.appendChild(card);
                 observer.observe(card);
             });
