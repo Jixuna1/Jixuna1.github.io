@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails du Projet - PharmaSI</title>
+    <style>
+        :root {
+            --neon-cyan: #00f2ff;
+            --bg-dark: #0d0d0d;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        /* Grille d'images */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
+
+        /* --- STYLE DE LA MODALE (L'AGRANDISSEMENT) --- */
+        #imageModal {
+            display: none; /* Caché par défaut */
+            position: fixed;
+            z-index: 10000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        #fullImg {
+            max-width: 90%;
+            max-height: 80%;
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.5);
+        }
+
+        #caption {
+            margin-top: 20px;
+            color: var(--neon-cyan);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 50px;
+            cursor: pointer;
+        }
+
+        .btn-quest {
+            display: inline-block;
+            text-decoration: none;
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            padding: 10px 20px;
+            margin-bottom: 30px;
+            transition: 0.3s;
+        }
+
+        .btn-quest:hover {
+            background: var(--neon-cyan);
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="btn-quest">← Retour au portfolio</a>
+    
+    <h1>Supermarche - Galerie Captures</h1>
+    
+    <div class="gallery">
+        <img src="assets/accueil.png" alt="Interface graphique" onclick="openZoom(this)">
+        <img src="assets/etp1.png" alt="Accès délégué régional" onclick="openZoom(this)">
+        <img src="assets/etp2.png" alt="Accès responsable" onclick="openZoom(this)">
+        <img src="assets/etp3.png" alt="Profil inexistant" onclick="openZoom(this)">
+        <img src="assets/etp4.png" alt="Erreur login" onclick="openZoom(this)">
+        <img src="assets/facture.png" alt="Formulaire délégué" onclick="openZoom(this)">
+        <img src="assets/imprimer.png" alt="Formulaire visiteur" onclick="openZoom(this)">
+        <img src="assets/compte.png" alt="Formulaire responsable" onclick="openZoom(this)">
+        <img src="assets/inscription.png" alt="Formulaire praticiens" onclick="openZoom(this)">
+        <img src="assets/BDD.png" alt="Formulaire produits" onclick="openZoom(this)">
+        <img src="assets/MAJ_prix.png" alt="Rapport de visite" onclick="openZoom(this)">  
+        <img src="assets/new_prod.png" alt="Rapport de visite" onclick="openZoom(this)">  
+        <img src="assets/supp_prod.png" alt="Rapport de visite" onclick="openZoom(this)">  
+    </div>
+
+    <div id="imageModal">
+        <span class="close-btn" onclick="closeZoom()">&times;</span>
+        <img id="fullImg" src="" alt="">
+        <div id="caption"></div>
+    </div>
+
+    <script>
+        // Sélection des éléments une seule fois
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("fullImg");
+        const captionText = document.getElementById("caption");
+
+        // Fonction pour ouvrir le zoom
+        function openZoom(imgElement) {
+            modal.style.display = "flex"; // On utilise flex pour centrer l'image
+            modalImg.src = imgElement.src;
+            captionText.innerHTML = imgElement.alt;
+        }
+
+        // Fonction pour fermer le zoom
+        function closeZoom() {
+            modal.style.display = "none";
+        }
+
+        // Fermer si on clique sur le fond noir
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeZoom();
+            }
+        }
+
+        // Fermer avec la touche Echap
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") closeZoom();
+        });
+    </script>
+
+</body>
+</html>
