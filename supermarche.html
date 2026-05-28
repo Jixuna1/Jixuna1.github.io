@@ -128,9 +128,21 @@
         <img src="assets/modif_catalogue.png" alt="Modification du catalogue" onclick="openZoom(this)">  
         <img src="assets/supp_fam.png" alt="Suppression de famille" onclick="openZoom(this)"> 
         <img src="assets/supp_prod.png" alt="Suppression des produits" onclick="openZoom(this)">  
-        <video controls poster="assets/Profil_client.mp4" onclick="openZoom(this)">
-            <source src="assets/Profil_client.mp4" type="video/mp4">
+        <video width="300" height="300" controls onclick="openZoom(this)">
+            <source src="assets/ma_video.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture vidéo.
         </video>
+        <script>
+        function toggleFullscreen(video) {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen(); // Safari
+            } else if (video.msRequestFullscreen) {
+                video.msRequestFullscreen(); // IE11
+            }
+        }
+        </script>
     </div>
 
     <div id="imageModal">
