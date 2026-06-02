@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stynova - Jouer</title>
+    <meta name="description" content="Jouez à Stynova, visez le centre de la cible, prenez en compte la force du vent et battez le record mondial.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <div class="logo-icon"></div>
+            Stynova
+        </a>
+        <nav>
+            <ul>
+                <li id="nav-login"><a href="index.html">Connexion</a></li>
+                <li id="nav-register"><a href="inscription.html">Inscription</a></li>
+                <li id="nav-game"><a href="jeu.html">Jouer</a></li>
+                <li id="nav-scores"><a href="scores.html">Classement</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu" id="nav-user">
+            <span class="username" id="nav-username"></span>
+            <button class="btn-logout" onclick="logout()">Déconnexion</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Menu de configuration avant de jouer (Design Moderne) -->
+        <div class="container setup-container" id="game-setup">
+            <h1><span>Prêt</span> à jouer ?</h1>
+            <p class="setup-subtitle">Sélectionnez votre mode de jeu pour commencer</p>
+            
+            <div class="mode-cards">
+                <div class="mode-card active" data-mode="casual" id="card-casual">
+                    <div class="mode-icon">🎯</div>
+                    <h3>Détente</h3>
+                    <p>Jouez pour le plaisir et choisissez votre vent.</p>
+                </div>
+                <div class="mode-card" data-mode="ranked" id="card-ranked">
+                    <div class="mode-icon">🏆</div>
+                    <h3>Compétitif</h3>
+                    <p>Vent aléatoire. Marquez des points et montez en grade !</p>
+                </div>
+            </div>
+
+            <div class="difficulty-section" id="difficulty-group">
+                <label>Difficulté du vent</label>
+                <div class="difficulty-options">
+                    <button class="diff-btn active" data-diff="faible">Faible</button>
+                    <button class="diff-btn" data-diff="moyen">Moyen</button>
+                    <button class="diff-btn" data-diff="fort">Fort</button>
+                    <button class="diff-btn diff-random" data-diff="aleatoire">Aléatoire</button>
+                </div>
+            </div>
+
+            <button class="btn btn-start" id="btn-start-game">LANCER LA PARTIE</button>
+        </div>
+
+        <!-- Zone de jeu (Cachée par défaut) -->
+        <div class="game-container" id="game-area" style="display: none;">
+            <div class="canvas-wrapper">
+                <canvas id="dartboard" width="400" height="400"></canvas>
+            </div>
+            
+            <div class="game-sidebar">
+                <div class="weather-panel">
+                    <h3>Météo (<span id="display-mode">Casual</span>)</h3>
+                    <div class="compass-container">
+                        <div class="compass-label compass-n">N</div>
+                        <div class="compass-label compass-e">E</div>
+                        <div class="compass-label compass-s">S</div>
+                        <div class="compass-label compass-w">O</div>
+                        <div class="compass-arrow" id="compass-arrow"></div>
+                        <div class="compass-center"></div>
+                    </div>
+                    <div class="wind-info">
+                        Direction : <span id="wind-dir" class="wind-strength">-</span><br>
+                        Force : <span id="wind-power" class="wind-strength">-</span>
+                    </div>
+                </div>
+
+                <div class="score-display">
+                    <h2>Score de la partie</h2>
+                    <div class="current-score" id="current-score">0</div>
+                </div>
+                
+                <div class="darts-left">
+                    Fléchettes : <span id="darts-left">5</span>
+                </div>
+                
+                <button class="btn btn-shoot" id="btn-shoot" disabled>Viser d'abord !</button>
+                <button class="btn" id="btn-restart" style="display:none;">Rejouer</button>
+                <button class="btn" id="btn-menu" style="display:none; background-color: var(--secondary-color); margin-top: 10px;">Changer de mode</button>
+                
+                <div class="score-history">
+                    <h3>Historique des lancers</h3>
+                    <ul class="history-list" id="history-list">
+                        <!-- Rempli par JS -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/jeu.js"></script>
+</body>
+</html>

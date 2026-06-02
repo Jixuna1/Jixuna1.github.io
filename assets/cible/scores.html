@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stynova - Classement</title>
+    <meta name="description" content="Consultez le classement général et les scores en mode détente et compétitif sur Stynova.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <div class="logo-icon"></div>
+            Stynova
+        </a>
+        <nav>
+            <ul>
+                <li id="nav-login"><a href="index.html">Connexion</a></li>
+                <li id="nav-register"><a href="inscription.html">Inscription</a></li>
+                <li id="nav-game" style="display:none;"><a href="jeu.html">Jouer</a></li>
+                <li id="nav-scores"><a href="scores.html">Classement</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu" id="nav-user" style="display:none;">
+            <span class="username" id="nav-username"></span>
+            <button class="btn-logout" onclick="logout()">Déconnexion</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container scores-container">
+            <h1><span>Classement</span> Général</h1>
+            
+            <div class="tabs">
+                <button class="tab-btn active" data-target="ranked">Mode Compétitif (Rangs)</button>
+                <button class="tab-btn" data-target="casual">Mode Détente (Historique)</button>
+            </div>
+
+            <!-- Classement Ranked -->
+            <div id="ranked" class="tab-content active">
+                <table class="scores-table">
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Joueur</th>
+                            <th>Rang</th>
+                            <th>Points Totaux</th>
+                            <th>Parties</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ranked-body">
+                        <!-- Rempli par JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Classement Casual -->
+            <div id="casual" class="tab-content">
+                <table class="scores-table">
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Joueur</th>
+                            <th>Score</th>
+                            <th>Vent</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="casual-body">
+                        <!-- Rempli par JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/scores.js"></script>
+</body>
+</html>
